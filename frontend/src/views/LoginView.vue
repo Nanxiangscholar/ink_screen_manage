@@ -86,7 +86,7 @@ const handleLogin = async () => {
     // 调用登录 API
     const response = await axios.post('/api/auth/login', loginForm.value)
     
-    if (response.success === true) {
+    if (response.code === 200) {
       // 存储用户信息
       localStorage.setItem('user', JSON.stringify(response.data))
       // 跳转到首页

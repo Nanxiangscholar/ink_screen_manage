@@ -23,7 +23,8 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   response => {
     const res = response.data
-    if (res.success !== true) {
+    // 后端返回格式：{ code: 200, message: "...", data: {...} }
+    if (res.code !== 200) {
       // 处理错误响应
       console.error('响应错误:', res.message)
     }

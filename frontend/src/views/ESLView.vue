@@ -237,7 +237,7 @@ const handleSaveBind = async () => {
     })
 
     // 后端返回: { success: true, data: {...}, message: "..." }
-    if (response.success === true) {
+    if (response.code === 200) {
       ElMessage.success(response.message || '绑定成功')
       bindDialogVisible.value = false
       getESLList()
@@ -266,7 +266,7 @@ const handleUnbindESL = (row) => {
         sku: row.sku
       })
       // 后端返回: { success: true, data: {...}, message: "..." }
-      if (response.success === true) {
+      if (response.code === 200) {
         ElMessage.success(response.message || '解绑成功')
         getESLList()
       } else {
@@ -287,7 +287,7 @@ const handleRefreshESL = async (row) => {
       esl_id: row.esl_id
     })
     // 后端返回: { success: true, data: {...}, message: "..." }
-    if (response.success === true) {
+    if (response.code === 200) {
       ElMessage.success(response.message || '刷新成功')
     } else {
       ElMessage.error(response.message || '刷新失败')
@@ -302,7 +302,7 @@ const handleCheckStatus = async (row) => {
   try {
     const response = await axios.get(`/api/esl/status/${row.esl_id}`)
     // 后端返回: { success: true, data: { status: '...' }, message: "..." }
-    if (response.success === true) {
+    if (response.code === 200) {
       const status = response.data?.status
       ElMessage.success(`标签状态: ${status === 'online' ? '在线' : '离线'}`)
     } else {

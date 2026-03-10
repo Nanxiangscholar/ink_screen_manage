@@ -242,7 +242,7 @@ const handleSaveField = async () => {
     }
 
     // 后端返回: { success: true, data: {...}, message: "..." }
-    if (response.success === true) {
+    if (response.code === 200) {
       ElMessage.success(response.message || '操作成功')
       dialogVisible.value = false
       getFields()
@@ -268,7 +268,7 @@ const handleDeleteField = (row) => {
     try {
       const response = await axios.delete(`/api/fields/${row.id}`)
       // 后端返回: { success: true, data: {...}, message: "..." }
-      if (response.success === true) {
+      if (response.code === 200) {
         ElMessage.success(response.message || '删除成功')
         getFields()
       } else {

@@ -151,7 +151,7 @@ const handleRegister = async () => {
       invitation_code: registerForm.value.invitationCode
     })
 
-    if (response.success === true) {
+    if (response.code === 200) {
       ElMessage.success('注册成功，请登录')
       router.push('/login')
     } else {

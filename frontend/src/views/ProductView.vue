@@ -271,8 +271,8 @@ const handleSaveProduct = async () => {
     await productFormRef.value.validate()
     
     const response = await axios.post('/api/product/save', productForm.value)
-    
-    if (response.success === true) {
+
+    if (response.code === 200) {
       ElMessage.success(response.message || '操作成功')
       dialogVisible.value = false
       getProducts()
@@ -300,7 +300,7 @@ const handleDeleteProduct = (row) => {
         sku: row.sku,
         store_code: row.store_code
       })
-      if (response.success === true) {
+      if (response.code === 200) {
         ElMessage.success(response.message || '删除成功')
         getProducts()
       } else {
